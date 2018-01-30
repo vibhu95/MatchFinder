@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC ">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>AdminInsert</title>
+</head>
+<body>
+<h1 style=" text-align: center"> Admin panel</h1>
+<h2>Product Insert </h2>
+<form action="InsertProduct" method="post">
+
+Product unique Id: 
+<input type="text" name="product_Id" >
+<br>
+
+Product Name: 
+<input type="text" name="product_name" >
+<br>
+Product Cost: 	
+<input type="number" name="product_cost" >
+<br>
+Product_image:
+<input type="file" name="file_path">
+<br>
+category_id
+<select name="category_id">
+  <option value="1">Moto</option>
+  <option value="2">Lenvo</option>
+
+</select>
+<br>
+Product Description:
+<br>
+<textarea cols="10px" rows="10px" name="product_description"></textarea>
+<br>
+Product Description in footer:
+<br>
+
+<textarea cols="10px" rows="10px" name="product_description_footer"></textarea>
+
+<br>
+
+Product Warranty:
+<input type="number" name="product_warranty">
+
+<input type="submit">
+
+</form>
+</body>
+</html>

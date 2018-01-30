@@ -1,0 +1,96 @@
+package admininsert;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.*;
+
+import connectionclass.Connectionclass;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/InsertProduct")
+public class InsertProduct extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       Connection conn=null;
+       
+   
+	protected void doPost	(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		conn=Connectionclass.dbConnector();
+		PrintWriter pw = response.getWriter();
+	;
+		String product_id=request.getParameter("product_Id");
+		String product_name=request.getParameter("product_name");
+		String product_cost=request.getParameter("product_cost");
+		String file_path=request.getParameter("file_path");
+		String category_id=request.getParameter("category_id");
+		String product_description=request.getParameter("product_description");
+		String product_warranty=request.getParameter("product_warranty");
+		System.out.println(category_id);
+		System.out.println(file_path);
+		
+	//	String product_description_footer=request.getParameter("product_description_footer");
+		
+		try {
+			PreparedStatement pst = conn.prepareStatement
+					("insert into products(product_name,product_cost,product_image,category_id,product_description,product_id) values(?,?,?,?,?,?)");
+		//	PreparedStatement pst1 = conn.prepareStatement
+			//		("insert into product_description(product_description,product_description_warranty,product_id) values(?,?,?)");
+			File file = new File(file_path);
+			
+			
+			FileInputStream fis = new FileInputStream(file);
+			System.out.println(fis.available());
+			System.out.println((int)file.length());
+			
+			pst.setString(1,product_name );
+			pst.setString(2, product_cost);
+			pst.setBinaryStream(3,fis,fis.available());
+			pst.setString(4,category_id);
+			pst.setString(5, product_description);
+			pst.setString(6, product_id);
+			int i = pst.executeUpdate();
+			if(i!=0)
+			{
+			pw.println("image has been inserted");
+			
+			
+			}
+			else
+			{
+			pw.println("image is not inserted");
+			
+			}
+			
+		
+	
+			PreparedStatement pst2 = conn.prepareStatement("insert into product_description(product_description,product_description_warranty,product_id) values(?,?,?)");
+			
+			pst2.setString(1,product_description );
+			pst2.setString(2, product_warranty);
+			pst2.setString(3, product_id);
+			pst2.execute();
+			pw.println("footer description inserted");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+	}
+
+	
+}

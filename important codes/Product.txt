@@ -1,0 +1,58 @@
+<%@page import="org.apache.catalina.startup.SetContextPropertiesRule"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" %>
+   <%@ page import="java.io.*,java.util.*,java.sql.*"%>
+   <%Connection conn=null;%> 
+<%String url="jdbc:mysql://localhost:3306/dshop";
+String user="root";
+String password="sikander";
+
+
+try{
+	
+	
+Class.forName("com.mysql.jdbc.Driver");
+
+  conn =   DriverManager.getConnection(url, user, password);
+System.out.print("successfully connectionclass");
+	
+	
+
+}
+catch(Exception e)
+{
+	
+	
+	e.printStackTrace();
+	
+	
+	
+} %>
+   
+   <%//conn=Connectionclass.dbConnector(); %>
+
+<%PreparedStatement pst=conn.prepareStatement("select product_id,product_name,product_cost from products"); %>
+<% ResultSet rs=pst.executeQuery(); %>
+
+
+					<%while(rs.next()){ %>
+					<%String displayname=rs.getString("product_name"); %>
+					<%int displaycost=rs.getInt("product_cost"); 
+					
+					%>
+					<div class="col-md-4 bottom-content ten">
+						<a href="RetriveSingleImage?id=<%=rs.getInt(1) %>"><img class="img-responsive" src="Retrieveproduct?id=<%=rs.getInt(1) %>" alt="Natural" >
+						<p class="tun"><%out.println(displayname);%></p>
+						<p class="number">INR<span><%out.println(displaycost);%></span></p>
+						<p class="best">BEST <span>SELLER</span></p>
+						<div class="pro-grid">
+								<p>LOOKS VS PERSONALITY</p>
+								<b>T-shirt</b>
+									<div class="pro-btns">
+										<span class="detail" >Detail</span>
+										<span class="buy-in" >ADD TO CART</span>
+									</div>
+							</div>
+						</a>			
+					</div>
+					<% } %>

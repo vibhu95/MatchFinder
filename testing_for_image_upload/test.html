@@ -1,0 +1,54 @@
+<html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("img").click(function(){
+        $('input').click();
+    });
+    $("img").hover(function(){
+        $("h4").toggle();
+    });
+    
+});
+</script>
+
+ <style>
+input {
+    display: block;
+    width: 0;
+    height: 0;
+}
+img:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    cursor: pointer;
+}
+h4 {
+    display: none;
+    text-shadow: 2px 2px 8px #DDDDDD;
+    font-family:cursive;
+    position: absolute;
+    top: 10%;
+   left: 5%;
+   width: 100%;
+   margin: 0 auto;
+   width: 300px;
+   height: 50px;
+}
+.image{
+    position: relative;
+}
+</style>
+</head>
+<body>
+<input type="file" name="somename" size="chars" onchange="document.getElementById('pic1').src='file:///'+this.value">
+
+<div id="image">
+<img id="pic1" src="businessman_17.png"/>
+<h4>Update profile<br> picture</h4>
+</div>
+
+
+</body>
+</html>
