@@ -9,7 +9,7 @@
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Password Recovery</h1>
-    <form action="Forget">
+    <form action="../Recovery" method="post">
       <div class="input-container">
         <input type="email" id="#label" name="email" required="required"/>
         <label for="#label">Email</label>

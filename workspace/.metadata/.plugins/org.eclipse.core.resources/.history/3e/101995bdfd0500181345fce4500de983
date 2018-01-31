@@ -1,0 +1,37 @@
+package com.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/SignUp")
+public class SignUp extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+    public SignUp() {
+        super();
+
+    }
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String name = request.getParameter("name");
+		int name = request.getParameter("age_of_agent");
+		int name = request.getParameter("age_of_business");
+		String name = request.getParameter("email");
+		String name = request.getParameter("contact");
+		String name = request.getParameter("address");
+		String name = request.getParameter("password");
+		String name = request.getParameter("lat");
+		String name = request.getParameter("lan");
+		
+		
+	}
+
+}

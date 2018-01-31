@@ -1,0 +1,22 @@
+package com.classes;
+import java.sql.Connection;
+
+public class ConnectionCon 
+{
+	public static Connection getConnection(){
+		
+	
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+	    con = DriverManager.getConnection(connectionURL, user, pass);
+	    
+	    PreparedStatement ps = con.prepareStatement("insert into data(image) values(?)");
+	    InputStream is = part.getInputStream();
+	    ps.setBlob(1, is);
+	    result = ps.executeUpdate();
+	}
+	catch(Exception e){
+		e.printStackTrace();
+	     }	
+	}
+}

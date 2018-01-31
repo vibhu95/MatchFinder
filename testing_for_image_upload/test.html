@@ -5,17 +5,20 @@
 $(document).ready(function(){
     $("img").click(function(){
         $('input').click();
-    });
-    $("img").hover(function(){
-        $("h4").toggle();
-    });
+    })
     
 });
+
+  var img = document.getElementById('upload');
+  function upload(){
+    img.submit();
+  }
+
 </script>
 
  <style>
 input {
-    display: block;
+    display: none;
     width: 0;
     height: 0;
 }
@@ -24,29 +27,17 @@ img:hover {
     filter: alpha(opacity=50); /* For IE8 and earlier */
     cursor: pointer;
 }
-h4 {
-    display: none;
-    text-shadow: 2px 2px 8px #DDDDDD;
-    font-family:cursive;
-    position: absolute;
-    top: 10%;
-   left: 5%;
-   width: 100%;
-   margin: 0 auto;
-   width: 300px;
-   height: 50px;
-}
-.image{
+#image{
     position: relative;
 }
 </style>
 </head>
 <body>
-<input type="file" name="somename" size="chars" onchange="document.getElementById('pic1').src='file:///'+this.value">
-
+  <form action="#" method="get" id="upload">
+<input id="dp" type="file" name="somename" size="chars" onchange="upload()">
+</form>
 <div id="image">
 <img id="pic1" src="businessman_17.png"/>
-<h4>Update profile<br> picture</h4>
 </div>
 
 

@@ -33,7 +33,6 @@
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background: url('bg1.jpg');">
-
 <nav class="navbar navbar-inner navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header"><a href="../index.jsp"><img src="../pic/logos.png" alt="logo" style="float: left; margin-right: 20px " height="50px" width="50px"></a>
@@ -56,3 +55,4 @@
     </ul>
   </div>
 </nav>
+

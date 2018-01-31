@@ -1,0 +1,16 @@
+package com.classes;
+
+import com.mysql.jdbc.Blob;
+
+public class UserBean {
+
+	private int id;
+	private String name;
+	private int age_of_agent;
+	private int age_of_Business;
+	private String email;
+	private Blob b;
+	
+	
+	
+}

@@ -73,7 +73,7 @@
       <h4 id="about">Match-finder is a wedding portal that provides its agents with bride and groom's information and services for them to better manage all aspects of their wedding partner</h4><br>
       <p id="about" >Match-finder is instant, convenient and faster way to search  nearby agents. It is a powerful tool for discovering compatibility and it’s fueling an increasing number of successful marriages. It is specially designed for the marraige bureau's agent wo can easily help the customer in direction of their search.
 </p>
-      <br><button class="btn btn-default btn-lg"><a style="text-decoration: none;" href="contact.html">Get in Touch</a></button>
+      <br><button class="btn btn-default btn-lg"><a style="text-decoration: none;" href="contact.jsp">Get in Touch</a></button>
     </div>
     <div class="col-sm-4">
       <span id="signal" class="glyphicon glyphicon-signal logo"></span>

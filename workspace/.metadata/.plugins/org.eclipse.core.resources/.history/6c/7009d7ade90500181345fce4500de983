@@ -1,0 +1,11 @@
+package com.classes;
+
+import java.sql.*;
+import java.io.*;
+public class UserDAO {
+	
+	public static UserBean insert(UserBean b){
+		
+	}
+
+}

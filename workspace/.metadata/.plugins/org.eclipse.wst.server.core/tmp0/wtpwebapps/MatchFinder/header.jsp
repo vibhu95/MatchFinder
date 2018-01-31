@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="com.classes.*" %>
+<%@ page session = "false" %>
+<% HttpSession session = request.getSession(false); %>
 
 <!-- header -->
 <html lang="en">
@@ -53,10 +56,28 @@ background-color: rgba(255,255,255,0.2);
   	float: right;
   	margin-top: 100px;
   }
+  #upload_dp {
+    display: none;
+    width: 0;
+    height: 0;
+}
+   #dp1:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    cursor: pointer;
+}
+  
   </style>
+  <script>
+$(document).ready(function(){
+    $("#dp1").click(function(){
+        $('#upload_dp').click();
+    })
+});
+</script>
+  
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
 <nav class="navbar navbar-inner navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -72,13 +93,52 @@ background-color: rgba(255,255,255,0.2);
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>   -->
-      <li><a href="#">Page 2</a></li>
-    <li><a href="contact.jsp">Contact Us</a></li>
+     <%
+      if(session!=null)
+      { %>
+      <li><a href="agent.jsp">Agents</a></li>
+      <% } %>
+      <li><a href="contact.jsp">Contact Us</a></li>
       </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="login/login.jsp"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
-      <li><a href="login/login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
+<script>
+function upload(){
+	 document.getElementById('upload').submit();
+	  }
+
+</script>
+      <%
+      if(session!=null)
+      {
+    	  if(session.getAttribute("user")!=null)
+    	  {
+    	    UserBean user = (UserBean)session.getAttribute("user");
+    	    if(user!=null)
+    	    {   %>
+        <form action="UploadImage" method="post" id="upload" enctype="multipart/form-data">
+        <input id="upload_dp" type="file" name="dp" size="chars" onchange="document.getElementById('upload').submit();">
+           </form>
+      <li style="font-size:20px; margin-top:10px;">
+      <%      if(user.getDp()!=null)
+               { int id = user.getId(); %>
+      <img id="dp1" src="getImage.jsp?id=<%=id %>" class="img-circle" alt="getDp" style="margin-top:5px; margin-right:10px;" width="40px" hieght="40px"></img></li><li><a style="text-decoration:none;" href="profile.jsp?id=<%=user.getId() %>"><%=user.getName() %></a></li>
+      <%         }
+              else{ %>
+    	<img id="dp1" src="pic/businessman_17.png" class="img-circle" alt="DefaultDp" style="margin-top:5px; margin-right:10px;" width="40px" hieght="40px"></img><a style="text-decoration:none;" href="profile.jsp?id=<%=user.getId() %>"><%=user.getName() %></a></li>
+      <%         } 
+             }
+      %>
+      <li><a href="SignOut"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
+      <%  } 
+      else {%>
+    		<li><a href="login/login.jsp"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+    	      <li><a href="login/login.jsp"><span class="glyphicon glyphicon-log-in"></span> SignIn</a></li> 
+  <%  } }
+    else { %>
+    	<li><a href="login/login.jsp"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+      <li><a href="login/login.jsp"><span class="glyphicon glyphicon-log-in"></span> SignIn</a></li> 
+      <% } %>
+       </ul>
   </div>
 </nav>
 

@@ -1,0 +1,153 @@
+package com.classes;
+
+import java.sql.*;
+import java.io.*;
+public class UserDAO {
+	static Connection con = null;
+	public static UserBean insert(UserBean b){
+		int result;
+		try{
+		con = ConnectionCon.getConnection();
+	    result = 1;
+		if(result > 0){
+	    	b.setMsg("Successfully inserted");
+	    	b.setStatus(1);
+	    }
+	    else
+	    {
+	    	b.setMsg("Failed... Try Again");
+	    	b.setStatus(0);
+	    }
+    
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		finally{	
+			if(con!=null){
+			con = null;
+			}
+		}
+		return b;
+	}
+    public static UserBean update(UserBean b){
+    		int result;
+    		try{
+    		con = ConnectionCon.getConnection();
+    	    String sql="update agents set name=?,age_of_agent=?,age_of_business=?,email=?,address=?,password=?,contact=?,latitude=?,longitude=? where id="+b.getId();
+    	    PreparedStatement ps = con.prepareStatement(sql);
+    	    ps.setString(1,b.getName());
+    	    ps.setInt(2,b.getAge_of_agent());
+    	    ps.setInt(3,b.getAge_of_Business());
+    	    ps.setString(4,b.getEmail());
+    	    ps.setString(5,b.getAddress());
+    	    ps.setString(6,b.getPassword());
+    	    ps.setLong(7,b.getContact());
+    	    ps.setDouble(8,b.getLat());
+    	    ps.setDouble(9,b.getLan());
+    	    
+    	    result = ps.executeUpdate();
+    	    if(result > 0){
+    	    	b.setMsg("Successfully Updated");
+    	    }
+    	    else
+    	    {
+               b.setMsg("Can't update the record, try again");
+    	    }
+        	}
+    		catch(Exception e){
+    			System.out.println(e);
+    		}
+    		finally{
+    			if(con!=null){
+    			con.close();
+    				con = null;
+    			}
+    		}
+    			return b;
+	}
+    
+    
+    public static UserBean select(UserBean b){
+		
+    	try{
+    	    con = ConnectionCon.getConnection();
+    	    String sql="select * from agents where email="+b.getName()+" and password="+b.getPassword();
+    	    Statement st = con.createStatement();
+    	    ResultSet rs = st.executeQuery(sql);
+    	       if(rs.next())
+    		    {
+    		    	b.setId(rs.getInt("agent_id"));
+    		    	b.setName(rs.getString("name"));
+    		    	b.setAge_of_agent(Integer.parseInt(rs.getString("age_of_agent")));
+    		    	b.setAge_of_Business(Integer.parseInt(rs.getString("age_of_business")));
+    		    	b.setEmail(rs.getString("email"));
+    		    	b.setAddress(rs.getString("address"));
+    		    	b.setPassword(rs.getString("password"));
+    		    	b.setDp(rs.getBlob("dp"));
+    		    	b.setSub_amt(rs.getInt("sub_amt"));
+    		    	b.setContact(rs.getString("contact"));
+    		    	b.setLat(rs.getString("latitude"));
+    		    	b.setLan(rs.getString("longitude"));
+    		    	b.setStatus(rs.getInt("status"));
+    		        b.setMsg("Sucessfully logged In ");
+    		   }
+    	     else{
+    	    	 b.setMsg("Not available");
+    	     }
+     		}
+    		catch(Exception e){
+    			System.out.println(e);
+    		}
+    		finally{
+    			if(ps!=null)
+    			{
+    				ps.close();
+    				ps=null;
+    			}
+    			if(con!=null){
+    			con.close();
+    				con = null;
+    			}
+    		}
+    		
+    	return b;
+	}
+    
+    
+    public static String delete(UserBean b){
+		
+    	int result;
+		try{
+		con = ConnectionCon.getConnection();
+	    String sql="delete from agents where agent_id=?";
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setString(1,b.getId());
+	    result = ps.executeUpdate();
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		finally{
+			if(ps!=null | ps!="")
+			{
+				ps.close();
+				ps=null;
+			}
+			if(con!=null|con!=""){
+			con.close();
+				con = null;
+			}
+
+		}
+	    if(result > 0){
+	    	return "Successfully deleted";
+	    }
+	    else
+	    {
+	    	return "Can't delete the record, try again";
+	    }
+    
+    }
+	
+}
