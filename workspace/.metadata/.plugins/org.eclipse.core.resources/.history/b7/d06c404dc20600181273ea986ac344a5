@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@page import="javax.servlet.http.*" %>
+<%@page import="com.classes.*" %>
+<%@page import="com.controller.*" %>
+<%@include file="header.jsp" %>
+
+<!-- Container (Pricing Section) -->
+<div id="pricing" class="container-fluid">
+  <div style="background-color: rgba(255,255,255,0.7); border-radius:2px; height:100px; letter-spacing:3px" class="text-center">
+    <h2 style="margin-top:10px">Subscription Package</h2>
+    <h4>Choose a payment plan that works for you</h4>
+  </div>
+  <div class="row slideanim">
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Basic</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>21</strong> Profiles</p>
+          <p><strong>50</strong> Photos</p>
+          <p><strong>10</strong> Agent Access</p>
+          <p><strong>6</strong> Months</p>
+          <p><strong>Limited</strong> Offer</p>
+        </div>
+        <div class="panel-footer">
+          <h3>&#8377 599</h3>
+          <h4><del>&#8377 999</del></h4>
+          <a href='https://www.payumoney.com/paybypayumoney/#/0F3A376EB87B608A25FEAC0E1EB751E5'>
+          <button class="btn btn-lg">Pay</button></a>
+        </div>
+      </div>      
+    </div>     
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Pro</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>50</strong> Profiles</p>
+          <p><strong>Unlimited</strong> Photos</p>
+          <p><strong>40</strong> Agent Access</p>
+          <p><strong>12</strong> Months</p>
+          <p><strong>Limited</strong> Offer</p>
+        </div>
+        <div class="panel-footer">
+          <h3>&#8377 999</h3>
+          <h4><del>&#8377 1299</del></h4>
+          <a href='https://www.payumoney.com/paybypayumoney/#/0F3A376EB87B608A25FEAC0E1EB751E5'>
+          <button class="btn btn-lg" onclick="AutoSubmit()">Pay</button></a>
+        </div>
+      </div>      
+    </div>     
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Premium</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>Unlimited</strong> Profiles</p>
+          <p><strong>Unlimited</strong> Photos</p>
+          <p><strong>Unlimited</strong> Agent Access</p>
+          <p><strong>24</strong> Months</p>
+          <p><strong>Limited</strong> Offer</p>
+        </div>
+        <div class="panel-footer">
+          <h3>&#8377 1899</h3>
+          <h4><del>&#8377 2299</del></h4>
+         <a href='https://www.payumoney.com/paybypayumoney/#/0F3A376EB87B608A25FEAC0E1EB751E5'>
+          <button class="btn btn-lg" onclick="AutoSubmit()">Pay</button></a>
+        </div>
+      </div>      
+    </div>     
+  </div>
+</div>
+</a>
+<script>
+
+
+</script>
+
+
+<%@include file="footer.jsp" %>

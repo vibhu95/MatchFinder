@@ -36,8 +36,8 @@ out.print(msg+" !! Try Again.."); %></h1> <% }%>
   </div>
   <!-- Ajax for checking new user existence in database -->
   <script>
-  var mail = documen.getElementByName("mail");
-  var myForm = documen.getElementByName("myForm");
+  var mail = document.getElementByName("mail");
+  var myForm = document.getElementByName("myForm");
   function ValidateEmail(mail) 
   {
    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.email.value))
@@ -51,6 +51,7 @@ out.print(msg+" !! Try Again.."); %></h1> <% }%>
   var request;
   function sendInfo()
   {
+	  alert("sendinf");
   var v=document.getElementByName('email').value; 
   var url="../ValidateUser?val="+v;
   if(window.XMLHttpRequest){
@@ -66,13 +67,14 @@ out.print(msg+" !! Try Again.."); %></h1> <% }%>
   }catch(e){alert("Unable to connect to server");}
   }
   function getInfo(){
+	  alert("getinf");
   if(request.readyState==4){
   var val=request.responseText;
   document.getElementById('valid').innerHTML=val;
   }}
 
   function validatePassword() {
-
+alert("PasswordVaalidate");
 		var pass = document.getElementById("password").value;
 		var cnfpass = document.getElementById("password2").value;
 	   var msg = document.getElementById("warn");     	
@@ -93,7 +95,7 @@ out.print(msg+" !! Try Again.."); %></h1> <% }%>
     <h1 class="title">Register
       <div class="close"></div>
     </h1>
-    <form action="../SignUp" method="post" name="myForm" onsubmit="validatePassword()">
+    <form action="../SignUp" method="post" name="myForm" onsubmit="">
       <div class="input-container">
         <input type="text" name="name" id="#label" required="required"/>
         <label for="#label">Name</label>
@@ -113,6 +115,7 @@ out.print(msg+" !! Try Again.."); %></h1> <% }%>
         <input type="email" onchange="sendInfo()" name="email" id="#label" required="required"/>
         <label for="#label">Email</label>
         <div class="bar"></div>
+       <p id="valid" style="color:white; margin-bottom:10px; font-size:18px; letter-spacing:2px"></p>
       </div>
       <div class="input-container">
         <input type="text" name="contact" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10" id="#label" required="required"/>
@@ -136,7 +139,7 @@ out.print(msg+" !! Try Again.."); %></h1> <% }%>
         <label for="#label">Confirm Password</label>
         <div class="bar"></div>
       </div>
-        <p id="warn" style="color:white; margin-bottom:10px; font-size:18px; letter-spacing:2px"></p>
+       <p id="warn" style="color:white; margin-bottom:10px; font-size:18px; letter-spacing:2px"></p>
       <div class="button-container">
         <button><span>Next</span></button>
       </div>

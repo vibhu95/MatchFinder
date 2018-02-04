@@ -4,7 +4,7 @@
 
 <!-- Footer Start -->
 
-<footer class="container-fluid text-center">
+<footer class="container-fluid text-center" style="float:bottom;">
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>

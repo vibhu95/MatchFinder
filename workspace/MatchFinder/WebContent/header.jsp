@@ -97,7 +97,16 @@ $(document).ready(function(){
       if(session!=null)
       { %>
       <li><a href="agent.jsp">Agents</a></li>
-      <% } %>
+   <%  if(session.getAttribute("user")!=""|session.getAttribute("user")!=null)    
+       { UserBean user = (UserBean)session.getAttribute("user");
+        if(user.getStatus()==0)
+        {
+       %>
+      <li><a href="package.jsp">Subscription</a></li>
+      <%
+       }
+       }
+      } %>
       <li><a href="contact.jsp">Contact Us</a></li>
       </ul>
     <ul class="nav navbar-nav navbar-right">

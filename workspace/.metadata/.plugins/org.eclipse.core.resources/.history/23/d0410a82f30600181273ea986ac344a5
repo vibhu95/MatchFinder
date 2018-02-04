@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="com.controller.*" %>
+<%@page import="com.controller.*" %>
+<%@include file="header.jsp" %>
+
+<div class="container container-fluid">
+<%@include file="agentsList.jsp" %>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%@include file="footer.jsp" %>

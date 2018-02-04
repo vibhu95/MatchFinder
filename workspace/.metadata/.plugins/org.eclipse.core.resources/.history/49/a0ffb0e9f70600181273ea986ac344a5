@@ -1,0 +1,172 @@
+<%@page import="java.sql.*" %>
+<%@page import="java.io.*" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="com.classes.*" %>
+
+<head>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="agents/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="agents/js/jquery.js" type="text/javascript"></script>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,500,700,200,300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!--start-body-->
+			<!--star-wrapper-demo-->
+			<div class="wrapper-demo">
+				<h1>Agent List</h1>
+				<!--start-wrapper-dropdown-2-->
+					<div id="dd" class="wrapper-dropdown-2 active" tabindex="1">Agents<i><img src="agents/images/menu.png"/></i>
+									 <!-- start search-->
+				    <div class="search-box">
+					    <div id="sb-search" class="sb-search">
+							<form action="#" method="post">
+								<input class="sb-search-input" placeholder="Enter your search term..." onkeyup="" type="search" name="search" id="search">
+								<input class="sb-search-submit" type="submit" value="">
+								<span class="sb-icon-search"> </span>
+							</form>
+						</div>
+				    </div>
+				    <!-- search-scripts -->
+					<script src="agents/js/classie.js"></script>
+					<script src="agents/js/uisearch.js"></script>
+						<script>
+							new UISearch( document.getElementById( 'sb-search' ) );
+							function sendInfo(){
+								  var v=document.getElementById('search').value; 
+								  var url="Agents?val="+v;
+								  alert(url);
+								  if(window.XMLHttpRequest){
+								   request=new XMLHttpRequest();
+								  }
+								  else if(window.ActiveXObject){
+								  request=new ActiveXObject("Microsoft.XMLHTTP");
+								  }
+								  try{
+								  request.onreadystatechange=getInfo();
+								  request.open("GET",url,true);
+								  request.send();
+								  }catch(e){alert("Unable to connect to server");}
+								  }
+								  function getInfo(){
+									  alert("getInf");
+								  if(request.readyState==4){
+									  alert("getInf readystat 4");
+								  var val=request.responseText;
+								  alert("getInf readystat 4 after val "+val);
+									//  document.getElementById('valid').innerHTML=val;
+								  alert(val);
+								  }
+								  alert("getInf end out of if");
+								  }
+							
+						</script>
+					<!-- /search-scripts -->
+ 				<!-- end search-->
+ 	
+ 	<% 	
+ 	ArrayList<UserBean> all = new ArrayList<>();
+ 	ResultSet rs;
+//	String search = request.getParameter("val");
+    Connection con = (Connection) ConnectionCon.getConnection();
+		try {
+			Statement stm = (Statement) con.createStatement();
+   //        rs = stm.executeQuery("select * from agents where ( concat(name,concat(email,concat(contact,address))) like '%"+ %> <script>document.write(document.getElementById("search").value);</script> <% //"%')");			
+		     rs = stm.executeQuery("select * from agents");			
+		   while(rs.next()){
+			   UserBean b = new UserBean();
+			   b.setId(rs.getInt("agent_id"));
+		    	b.setName(rs.getString("name"));
+		    	b.setAge_of_agent(Integer.parseInt(rs.getString("age_of_agent")));
+		    	b.setAge_of_Business(Integer.parseInt(rs.getString("age_of_business")));
+		    	b.setEmail(rs.getString("email"));
+		    	b.setAddress(rs.getString("address"));
+		    	b.setPassword(rs.getString("password"));
+		    	Blob blob = rs.getBlob("dp");
+		        byte[] byteArray = blob.getBytes(1, (int)blob.length());
+		     	b.setDp(byteArray);
+		    	b.setSub_amt(rs.getInt("sub_amt"));
+		    	b.setContact(Long.parseLong(rs.getString("contact")));
+		    	b.setLat(Double.parseDouble(rs.getString("latitude")));
+		    	b.setLan(Double.parseDouble(rs.getString("longitude")));
+		    	b.setStatus(rs.getInt("status"));
+		        b.setMsg("Sucessfully logged In ");
+		        b.setUpdate(1);
+		        all.add(b);
+		        System.out.println("SuccessFull Ajax of agent.java");
+		    }
+		    session.setAttribute("all", all);
+		 out.print("hello");    
+	    } catch (SQLException e) {
+			 }
+ %>
+ 							<ul class="dropdown">							
+								<div class="friends-grids">
+									<div class="grids-left">
+										<img src="agents/images/a1.png" />
+									</div>	
+									<div class="friend-grid"><p class="flowers">14k</p></div>
+									<div class="grids-right">
+										<h2>Jessica Butler</h2>
+										<!--<img src="agents/images/heart.png" />-->
+									<ul class="grids-right-info">
+											<li class="user">107</li>
+											<li class="camera">23</li>
+											<li class="chat">6</li>
+										<div class="clear"> </div>
+									</ul>
+									</div>
+									<div class="clear"> </div>
+								</div>
+					           <div class="friends-grids">
+									<div class="grids-left">
+										<img src="agents/images/a2.png" />
+									</div>	
+									<div class="friend-grid"><p class="flowers">21k</p></div>
+									<div class="grids-right">
+										<h2>Cristina Williams</h2>
+										<!--<img src="agents/images/heart.png" />-->
+									<ul class="grids-right-info">
+											<li class="user">93</li>
+											<li class="camera">57</li>
+											<li class="chat">7</li>
+										<div class="clear"> </div>
+									</ul>
+									</div>
+									<div class="clear"> </div>
+								</div>
+							</ul>
+					</div>
+			</div>
+			<!--end-wrapper-dropdown-2-->
+	
+	
+			<!--start-script-->
+			<script type="text/javascript">
+							function DropDown(el) {
+								this.dd = el;
+								this.initEvents();
+							}
+							DropDown.prototype = {
+								initEvents : function() {
+									var obj = this;
+				
+									obj.dd.on('click', function(event){
+										$(this).toggleClass('active');
+										event.stopPropagation();
+									});	
+								}
+							}
+							$(function() {
+				
+								var dd = new DropDown( $('#dd') );
+				
+								$(document).click(function() {
+									// all dropdowns
+									$('.wrapper-dropdown-2').removeClass('active');
+								});
+				
+							});
+			</script>
+			<!--end-script-->
+			<!--end-wrapper-demo-->
+		
